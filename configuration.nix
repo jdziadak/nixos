@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelParams = ["nomodeset"]; #VM
+  #boot.kernelParams = ["nomodeset"]; #VM
   networking.hostName = "fujibook"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -36,14 +36,12 @@
   #};
 
   # VM
-  virtualisation.hypervGuest.enable = true;
-  virtualisation.hypervGuest.videoMode = "1024x768";
+  #virtualisation.hypervGuest.enable = true;
+  #virtualisation.hypervGuest.videoMode = "1024x768";
   
   # Enable the X11 windowing system.
   services.xserver = {
       enable = true;
-      modules = [ pkgs.xorg.xf86videofbdev ];
-      videoDrivers = [ "hyperv_fb" ];
       excludePackages = with pkgs; [
         xterm
       ];
@@ -55,6 +53,7 @@
             theme.name = "Zukitre-dark";
           };
         };
+	defaultSession = "xfce";
       };
       desktopManager.xfce.enable = true;
     };
@@ -131,7 +130,7 @@
     xsel
     xtitle
     xwinmosaic
-    xorg.xf86videofbdev
+    xorg.xf86videointel
     # ---- EDITOR ----
     emacs                      # > editor
     pkgs.emacsPackages.doom
@@ -162,8 +161,8 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
+  
+  # export services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
